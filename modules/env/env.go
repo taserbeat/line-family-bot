@@ -7,8 +7,9 @@ import (
 )
 
 type Environment struct {
-	Port            string `envconfig:"PORT"`
-	LineAccessToken string `envconfig:"LINE_ACCESS_TOKEN"`
+	Port                   string `envconfig:"PORT"`
+	LineChannelAccessToken string `envconfig:"LINE_CHANNEL_ACCESS_TOKEN"`
+	LineChannelSecret      string `envconfig:"LINE_CHANNEL_SECRET"`
 }
 
 var Env Environment
