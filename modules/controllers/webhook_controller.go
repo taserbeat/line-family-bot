@@ -17,8 +17,6 @@ func webhook(c *gin.Context) {
 	// GWサーバーにステータスコード200をなるべく早く返す
 	c.JSON(http.StatusOK, gin.H{})
 
-	// TODO: 署名検証処理
-
 	// TODO: イベント解析
 	client := &http.Client{}
 	bot, err := linebot.New(env.Env.LineChannelSecret, env.Env.LineChannelAccessToken, linebot.WithHTTPClient(client))
@@ -27,9 +25,15 @@ func webhook(c *gin.Context) {
 		return
 	}
 
+	// 署名検証とイベント解析
 	events, err := bot.ParseRequest(c.Request)
 	if err != nil {
-		log.Println("イベントの解析に失敗", err)
+		switch err {
+		case linebot.ErrInvalidSignature:
+			log.Println("リクエストの署名が不正", err)
+		default:
+			log.Println("イベントの解析に失敗", err)
+		}
 		return
 	}
 
