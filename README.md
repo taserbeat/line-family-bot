@@ -16,4 +16,5 @@
 - [Messaging API の概要](https://developers.line.biz/ja/docs/messaging-api/overview/)
 - [LINE ボット開発ガイドライン](https://vos.line-scdn.net/line-developers/docs/media/partner-docs/LINE_BOT_Development_Guidelines.pdf)
 - [LINE Messaging API SDK for Go](https://github.com/line/line-bot-sdk-go)
+- [メッセージ（Webhook）を受信する](https://developers.line.biz/ja/docs/messaging-api/receiving-messages/)
 - [Gin Web Framework](https://gin-gonic.com/ja/docs/)
