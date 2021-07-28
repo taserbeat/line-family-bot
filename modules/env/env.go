@@ -12,7 +12,10 @@ type Environment struct {
 	LineChannelSecret      string `envconfig:"LINE_CHANNEL_SECRET"`
 }
 
-var Env Environment
+var Env Environment = Environment{
+	LineChannelAccessToken: "dummy",
+	LineChannelSecret:      "dummy",
+}
 
 func init() {
 	loadEnvironment()
