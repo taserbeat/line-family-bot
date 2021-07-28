@@ -9,6 +9,19 @@ import (
 	"github.io/taserbeat/line-family-bot/modules/env"
 )
 
+var client *http.Client
+var bot *linebot.Client
+
+func init() {
+	var err error
+
+	client = &http.Client{}
+	bot, err = linebot.New(env.Env.LineChannelSecret, env.Env.LineChannelAccessToken, linebot.WithHTTPClient(client))
+	if err != nil {
+		log.Fatalln("linebotクライアントの作成に失敗", err)
+	}
+}
+
 func WebhookHandler() gin.HandlerFunc {
 	return webhook
 }
@@ -16,14 +29,6 @@ func WebhookHandler() gin.HandlerFunc {
 func webhook(c *gin.Context) {
 	// GWサーバーにステータスコード200をなるべく早く返す
 	c.JSON(http.StatusOK, gin.H{})
-
-	// TODO: イベント解析
-	client := &http.Client{}
-	bot, err := linebot.New(env.Env.LineChannelSecret, env.Env.LineChannelAccessToken, linebot.WithHTTPClient(client))
-	if err != nil {
-		log.Println("linebotのクライアント作成に失敗", err)
-		return
-	}
 
 	// 署名検証とイベント解析
 	events, err := bot.ParseRequest(c.Request)
