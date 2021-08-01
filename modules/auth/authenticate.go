@@ -3,8 +3,8 @@ package auth
 import (
 	"strings"
 
+	"github.com/thoas/go-funk"
 	"github.io/taserbeat/line-family-bot/modules/env"
-	"github.io/taserbeat/line-family-bot/modules/utils"
 )
 
 type Authenticate struct {
@@ -29,7 +29,7 @@ func New(familyUserIdsString string) Authenticate {
 
 /* 家族であるか判定する */
 func (authenticate Authenticate) IsFamily(userId string) bool {
-	return utils.Contains(authenticate.FamilyUserIds, userId)
+	return funk.Contains(authenticate.FamilyUserIds, userId)
 }
 
 func init() {
