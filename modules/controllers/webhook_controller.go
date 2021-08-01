@@ -50,7 +50,6 @@ func webhook(c *gin.Context) {
 	for _, event := range events {
 
 		if event.Type == linebot.EventTypeMessage {
-			log.Printf("eventType: %s, userId: %s, groupId: %s, roomId: %s\n", event.Type, event.Source.UserID, event.Source.GroupID, event.Source.RoomID)
 
 			// 認証
 			userId := event.Source.UserID
@@ -61,6 +60,7 @@ func webhook(c *gin.Context) {
 
 			if event.Source.Type == linebot.EventSourceTypeGroup {
 				// グループでのトークの場合
+				log.Println("グループトークを受け付けた groupId: ", event.Source.GroupID)
 
 				// ボット宛のメンションであるかを判定
 				switch message := event.Message.(type) {
@@ -97,6 +97,8 @@ func webhook(c *gin.Context) {
 
 			} else if event.Source.Type == linebot.EventSourceTypeUser {
 				// 個人チャットの場合
+				log.Println("個人チャットを受け付けた")
+
 				replyText := linebot.NewTextMessage("あなたのIDは " + userId + " です")
 				_, err := bot.ReplyMessage(event.ReplyToken, replyText).Do()
 				if err != nil {
