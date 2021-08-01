@@ -4,8 +4,8 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.io/taserbeat/line-family-bot/modules/controllers"
-	"github.io/taserbeat/line-family-bot/modules/env"
+	"github.com/taserbeat/line-family-bot/modules/controllers"
+	"github.com/taserbeat/line-family-bot/modules/env"
 )
 
 func main() {

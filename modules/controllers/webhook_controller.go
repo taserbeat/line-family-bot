@@ -8,10 +8,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/v7/linebot"
+	"github.com/taserbeat/line-family-bot/modules/auth"
+	"github.com/taserbeat/line-family-bot/modules/env"
+	"github.com/taserbeat/line-family-bot/modules/functions"
 	"github.com/thoas/go-funk"
-	"github.io/taserbeat/line-family-bot/modules/auth"
-	"github.io/taserbeat/line-family-bot/modules/env"
-	"github.io/taserbeat/line-family-bot/modules/functions"
 )
 
 var client *http.Client

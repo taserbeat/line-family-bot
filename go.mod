@@ -1,4 +1,4 @@
-module github.io/taserbeat/line-family-bot
+module github.com/taserbeat/line-family-bot
 
 go 1.16
 

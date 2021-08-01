@@ -3,7 +3,7 @@ package functions_test
 import (
 	"testing"
 
-	"github.io/taserbeat/line-family-bot/modules/functions"
+	"github.com/taserbeat/line-family-bot/modules/functions"
 )
 
 func TestGetToday(t *testing.T) {
