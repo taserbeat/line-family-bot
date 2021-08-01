@@ -10,12 +10,14 @@ type Environment struct {
 	Port                   string `envconfig:"PORT"`
 	LineChannelAccessToken string `envconfig:"LINE_CHANNEL_ACCESS_TOKEN"`
 	LineChannelSecret      string `envconfig:"LINE_CHANNEL_SECRET"`
+	LineChannelUserId      string `envconfig:"LINE_CHANNEL_USERID"`
 	FamilyUserIds          string `envconfig:"FAMILY_USERIDS"`
 }
 
 var Env Environment = Environment{
 	LineChannelAccessToken: "dummy",
 	LineChannelSecret:      "dummy",
+	LineChannelUserId:      "dummy",
 	FamilyUserIds:          "abc,def,ghi",
 }
 
