@@ -14,3 +14,8 @@
 ## 参考文献
 
 - [Messaging API の概要](https://developers.line.biz/ja/docs/messaging-api/overview/)
+- [LINE ボット開発ガイドライン](https://vos.line-scdn.net/line-developers/docs/media/partner-docs/LINE_BOT_Development_Guidelines.pdf)
+- [LINE Messaging API SDK for Go](https://github.com/line/line-bot-sdk-go)
+- [メッセージ（Webhook）を受信する](https://developers.line.biz/ja/docs/messaging-api/receiving-messages/)
+- [メッセージイベント](https://developers.line.biz/ja/reference/messaging-api/#message-event)
+- [Gin Web Framework](https://gin-gonic.com/ja/docs/)

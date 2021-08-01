@@ -7,8 +7,10 @@ import (
 	"github.io/taserbeat/line-family-bot/modules/models"
 )
 
-func GetVersion() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.JSON(http.StatusOK, models.Ver)
-	}
+func GetVersionHandler() gin.HandlerFunc {
+	return getVersion
+}
+
+func getVersion(c *gin.Context) {
+	c.JSON(http.StatusOK, models.Ver)
 }

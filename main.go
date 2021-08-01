@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gin-gonic/gin"
 	"github.io/taserbeat/line-family-bot/modules/controllers"
 	"github.io/taserbeat/line-family-bot/modules/env"
@@ -9,9 +11,11 @@ import (
 func main() {
 	router := gin.Default()
 
-	router.GET("/", controllers.HealthCheck())
+	router.GET("/", controllers.HealthCheckHandler())
 
-	router.GET("/version", controllers.GetVersion())
+	router.GET("/version", controllers.GetVersionHandler())
+
+	router.POST("/webhook", controllers.WebhookHandler())
 
 	// ポートの設定
 	port := env.Env.Port
@@ -21,6 +25,6 @@ func main() {
 
 	// サーバーのリッスン
 	if err := router.Run(":" + port); err != nil {
-		panic(err)
+		log.Fatalln("サーバーの起動に失敗")
 	}
 }
