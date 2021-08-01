@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.io/taserbeat/line-family-bot/modules/models"
+	"github.com/taserbeat/line-family-bot/modules/models"
 )
 
 func GetVersionHandler() gin.HandlerFunc {

@@ -3,8 +3,8 @@ package auth
 import (
 	"strings"
 
+	"github.com/taserbeat/line-family-bot/modules/env"
 	"github.com/thoas/go-funk"
-	"github.io/taserbeat/line-family-bot/modules/env"
 )
 
 type Authenticate struct {

@@ -3,7 +3,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.io/taserbeat/line-family-bot/modules/utils"
+	"github.com/taserbeat/line-family-bot/modules/utils"
 )
 
 func TestContaines(t *testing.T) {

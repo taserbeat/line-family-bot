@@ -3,7 +3,7 @@ package auth_test
 import (
 	"testing"
 
-	"github.io/taserbeat/line-family-bot/modules/auth"
+	"github.com/taserbeat/line-family-bot/modules/auth"
 )
 
 var client auth.Authenticate
