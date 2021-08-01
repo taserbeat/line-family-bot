@@ -36,7 +36,7 @@ jobs:
         run: go build ./...
   # アプリケーションの単体テスト
   test:
-    needs: setip
+    needs: setup
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
