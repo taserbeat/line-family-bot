@@ -1,0 +1,45 @@
+name: test before mergin into master
+
+on:
+  pull_request:
+    branches:
+      - "master"
+
+jobs:
+  # セットアップ(共通処理)
+  setup:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: setup
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.16
+        id: go
+      - name: checkout
+        uses: actions/checkout@v2
+
+      # 処理を高速化するために環境をキャッシュ
+      - name: Cache
+        uses: actions/cache@v2.1.0
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+  # ビルド可能かのテスト
+  build:
+    needs: setup
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: go build ./...
+  # アプリケーションの単体テスト
+  test:
+    needs: setip
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: test
+        run: go test ./... -v
+
