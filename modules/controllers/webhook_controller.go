@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -11,7 +12,6 @@ import (
 	"github.com/taserbeat/line-family-bot/modules/auth"
 	"github.com/taserbeat/line-family-bot/modules/env"
 	"github.com/taserbeat/line-family-bot/modules/functions"
-	"github.com/thoas/go-funk"
 )
 
 var client *http.Client
@@ -48,9 +48,7 @@ func webhook(c *gin.Context) {
 	}
 
 	for _, event := range events {
-
 		if event.Type == linebot.EventTypeMessage {
-
 			// 認証
 			userId := event.Source.UserID
 			if !auth.AuthenticateClient.IsFamily(userId) {
@@ -62,15 +60,14 @@ func webhook(c *gin.Context) {
 				// グループでのトークの場合
 				log.Println("グループトークを受け付けた groupId: ", event.Source.GroupID)
 
-				// ボット宛のメンションであるかを判定
+				// キーワードを含むか判定
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					isMentionToBot := funk.Contains(message.Mention.Mentionees, func(mentionee *linebot.Mentionee) bool {
-						return mentionee.UserID == env.Env.LineChannelUserId
-					})
+					isContainKeyword := strings.Contains(message.Text, "今日は何の日")
 
-					// ボット宛のメンションではない場合は処理を終了
-					if !isMentionToBot {
+					// キーワードを含まない場合は処理を終了
+					if !isContainKeyword {
+						log.Println("キーワードを含まない")
 						return
 					}
 
@@ -94,10 +91,9 @@ func webhook(c *gin.Context) {
 				default:
 					return
 				}
-
 			} else if event.Source.Type == linebot.EventSourceTypeUser {
 				// 個人チャットの場合
-				log.Println("個人チャットを受け付けた")
+				log.Println("個人チャットを受け付けた", userId)
 
 				replyText := linebot.NewTextMessage("あなたのIDは " + userId + " です")
 				_, err := bot.ReplyMessage(event.ReplyToken, replyText).Do()
